@@ -2,10 +2,12 @@ package com.shida.springCourseWebServices.config;
 
 import com.shida.springCourseWebServices.entities.Category;
 import com.shida.springCourseWebServices.entities.Order;
+import com.shida.springCourseWebServices.entities.Product;
 import com.shida.springCourseWebServices.entities.User;
 import com.shida.springCourseWebServices.entities.enums.OrderStatus;
 import com.shida.springCourseWebServices.repositories.CategoryRepository;
 import com.shida.springCourseWebServices.repositories.OrderRepository;
+import com.shida.springCourseWebServices.repositories.ProductRepository;
 import com.shida.springCourseWebServices.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -28,13 +30,23 @@ public class TestConfig implements CommandLineRunner {
     @Autowired
     private CategoryRepository categoryRepository;
 
+    @Autowired
+    private ProductRepository productRepository;
+
     @Override
     public void run(String... args) throws Exception {
         Category cat1 = new Category(null, "Electronics");
         Category cat2 = new Category(null, "Books");
         Category cat3 = new Category(null, "Computers");
 
+        Product p1 = new Product(null, "The Lord of the Rings", "Lorem ipsum dolor sit amet, consectetur.", 90.5, "");
+        Product p2 = new Product(null, "Smart TV", "Nulla eu imperdiet purus. Maecenas ante.", 2190.0, "");
+        Product p3 = new Product(null, "Macbook Pro", "Nam eleifend maximus tortor, at mollis.", 1250.0, "");
+        Product p4 = new Product(null, "PC Gamer", "Donec aliquet odio ac rhoncus cursus.", 1200.0, "");
+        Product p5 = new Product(null, "Hello Kitty Plushie", "For the love of my life, Sabrina.", 100.99, "");
+
         categoryRepository.saveAll(Arrays.asList(cat1, cat2, cat3));
+        productRepository.saveAll(Arrays.asList(p1, p2, p3, p4, p5));
 
         User u1 = new User(null, "Marcello Shibata", "marcello@gmail.com", "977777772", "sahTeAmo");
         User u2 = new User(null, "Sabrina Neves", "sabrina@gmail.com", "977777777", "celloTeAmo");
