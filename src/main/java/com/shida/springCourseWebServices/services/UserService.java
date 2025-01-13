@@ -2,6 +2,7 @@ package com.shida.springCourseWebServices.services;
 
 import com.shida.springCourseWebServices.entities.User;
 import com.shida.springCourseWebServices.repositories.UserRepository;
+import com.shida.springCourseWebServices.services.exceptions.ResourceNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -20,7 +21,7 @@ public class UserService {
 
     public User findById(Long id) {
         Optional<User> obj = repository.findById(id);
-        return obj.get();
+        return obj.orElseThrow(() -> new ResourceNotFoundException(id));
     }
 
     public User insert(User user) {
